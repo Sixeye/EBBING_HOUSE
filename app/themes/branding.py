@@ -16,13 +16,18 @@ from pathlib import Path
 from PySide6.QtCore import QPointF, QRectF, Qt
 from PySide6.QtGui import QColor, QIcon, QPainter, QPen, QPixmap, QPolygonF
 
+from app.core.paths import PROJECT_ROOT as RUNTIME_PROJECT_ROOT
+from app.core.paths import get_app_asset_dir, get_project_asset_dir
+
 # Project-level canonical location required by product spec.
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-PRIMARY_BRANDING_DIR = PROJECT_ROOT / "assets" / "images"
+# These paths are resolved through `app.core.paths` so the same code works in
+# development and inside a bundled app.
+PROJECT_ROOT = RUNTIME_PROJECT_ROOT
+PRIMARY_BRANDING_DIR = get_project_asset_dir("images")
 PRIMARY_BRANDING_PATH = PRIMARY_BRANDING_DIR / "EBBING_HOUSE_APP.png"
 
 # Compatibility folder used by earlier iterations of the project.
-BRANDING_DIR = Path(__file__).resolve().parent.parent / "assets" / "branding"
+BRANDING_DIR = get_app_asset_dir("branding")
 BRANDING_CANDIDATES = (
     "EBBING_HOUSE_APP.png",
     "ebbing_house_identity.png",

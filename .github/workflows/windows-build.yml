@@ -1,0 +1,51 @@
+name: Build Windows EXE
+
+on:
+  # Manual trigger from GitHub UI (recommended for release preparation).
+  workflow_dispatch:
+  # Optional release-style trigger when pushing version tags.
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build-windows-exe:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install pyinstaller
+
+      - name: Build Windows package with PyInstaller
+        shell: pwsh
+        run: |
+          ./packaging/windows/build_windows_exe.ps1
+
+      - name: Verify expected artifact exists
+        shell: pwsh
+        run: |
+          $zipPath = "dist/windows/EBBING_HOUSE-windows-x64.zip"
+          if (-not (Test-Path $zipPath)) {
+            throw "Expected ZIP artifact not found at $zipPath"
+          }
+
+      - name: Upload Windows executable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          # This is the file users will download from the Actions run page.
+          name: EBBING_HOUSE-windows-x64
+          path: dist/windows/EBBING_HOUSE-windows-x64.zip
+          if-no-files-found: error
+          retention-days: 14

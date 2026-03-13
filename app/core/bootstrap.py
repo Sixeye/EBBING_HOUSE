@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from app.config.settings import DEFAULT_LOCALE, LOCALES_DIR
-from app.core.paths import get_database_path
+from app.config.settings import DEFAULT_LOCALE
+from app.core.paths import get_database_path, get_locales_dir
 from app.db.database import DatabaseManager
 from app.i18n.translator import Translator
 from app.repositories.deck_repository import DeckRepository
@@ -112,7 +112,7 @@ class AppBootstrap:
         )
         self.run_history_service = RunHistoryService(self.run_history_repository)
 
-        self.translator = Translator(locales_dir=LOCALES_DIR, default_locale=DEFAULT_LOCALE)
+        self.translator = Translator(locales_dir=get_locales_dir(), default_locale=DEFAULT_LOCALE)
         self.dashboard_service = DashboardService(self.database)
 
     def initialize(self) -> None:

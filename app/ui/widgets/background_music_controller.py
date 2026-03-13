@@ -12,6 +12,7 @@ from pathlib import Path
 
 from PySide6.QtCore import QObject, QUrl
 
+from app.core.paths import get_app_asset_dir
 from app.services.settings_service import SettingsService
 
 try:
@@ -28,7 +29,9 @@ def _preferred_music_paths() -> list[Path]:
     - first choice: longer calmer study loop for extended sessions
     - second choice: legacy calm loop kept for compatibility
     """
-    sounds_dir = Path(__file__).resolve().parents[2] / "assets" / "sounds"
+    # Sound assets are bundled read-only resources. They must be resolved from
+    # the runtime resource tree rather than from module-relative dev paths.
+    sounds_dir = get_app_asset_dir("sounds")
     return [
         sounds_dir / "background_8bit_serene_long.wav",
         sounds_dir / "background_8bit_calm.wav",
@@ -37,7 +40,7 @@ def _preferred_music_paths() -> list[Path]:
 
 def _fallback_music_path() -> Path:
     """Return fallback track for environments where calm loop is not bundled yet."""
-    return Path(__file__).resolve().parents[2] / "assets" / "sounds" / "game_start_8bit.wav"
+    return get_app_asset_dir("sounds", "game_start_8bit.wav")
 
 
 class BackgroundMusicController(QObject):

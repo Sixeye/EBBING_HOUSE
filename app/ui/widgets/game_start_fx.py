@@ -7,6 +7,7 @@ from pathlib import Path
 from PySide6.QtCore import QEasingCurve, QPoint, QPropertyAnimation, QTimer, QUrl
 from PySide6.QtWidgets import QGraphicsOpacityEffect, QLabel, QWidget
 
+from app.core.paths import get_app_asset_dir
 from app.services.settings_service import SettingsService
 
 try:
@@ -18,7 +19,9 @@ except Exception:  # pragma: no cover - safety fallback for constrained runtimes
 
 
 def _default_sound_path() -> Path:
-    return Path(__file__).resolve().parents[2] / "assets" / "sounds" / "game_start_8bit.wav"
+    # This intro cue ships with the app, so it has to come from bundled
+    # resources instead of relying on source-tree-relative paths.
+    return get_app_asset_dir("sounds", "game_start_8bit.wav")
 
 
 class GameStartFxController:

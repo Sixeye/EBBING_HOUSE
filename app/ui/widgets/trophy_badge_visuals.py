@@ -16,8 +16,10 @@ from pathlib import Path
 from PySide6.QtCore import QRectF, Qt
 from PySide6.QtGui import QColor, QFont, QIcon, QLinearGradient, QPainter, QPen, QPixmap
 
+from app.core.paths import get_app_asset_dir
+
 # Future-ready location for real badge assets (one file per code/category).
-BADGES_DIR = Path(__file__).resolve().parents[2] / "assets" / "badges"
+BADGES_DIR = get_app_asset_dir("badges")
 
 # Short, readable glyphs used by the generated fallback icons.
 _CODE_GLYPH_MAP: dict[str, str] = {
