@@ -1,0 +1,2 @@
+id,category,question,choice_a,choice_b,choice_c,choice_d,correct_answers,mode,explanation,difficulty,tags
+demo_001,general,Which options are vowels?,A,B,E,,A|C,multiple_choice,A and E are vowels.,1,"demo,vowels"
