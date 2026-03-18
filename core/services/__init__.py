@@ -11,6 +11,7 @@ from core.services.deck_service import DeckService
 from core.services.maze_generation_service import MazeGenerationService
 from core.services.profile_service import ProfileService
 from core.services.question_import_service import QuestionImportService
+from core.services.question_selection_service import QuestionSelectionService
 from core.services.run_history_service import RunHistoryService
 from core.services.settings_service import SettingsService
 
@@ -21,6 +22,7 @@ __all__ = [
     "MazeGenerationService",
     "ProfileService",
     "QuestionImportService",
+    "QuestionSelectionService",
     "RunHistoryService",
     "SettingsService",
 ]
