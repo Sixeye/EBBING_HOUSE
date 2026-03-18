@@ -15,7 +15,7 @@ from PySide6.QtWidgets import (
 
 from app.services.profile_service import ProfileService
 from app.services.run_history_service import RunHistoryService
-from app.ui.pages.base_page import BasePage
+from desktop_app.ui.pages.base_page import BasePage
 
 
 class HistoryPage(BasePage):

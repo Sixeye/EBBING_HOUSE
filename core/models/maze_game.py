@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal
 
-from app.models.question import Question
+from core.models.question import Question
 
 MazeDirection = Literal["forward", "backward", "left", "right"]
 

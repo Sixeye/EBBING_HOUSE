@@ -18,9 +18,9 @@ from PySide6.QtWidgets import (
 
 from app.services.profile_service import ProfileService
 from app.services.trophy_service import TrophyService
-from app.ui.pages.base_page import BasePage
-from app.ui.widgets.motion import set_feedback_visual
-from app.ui.widgets.trophy_badge_visuals import build_trophy_badge_icon
+from desktop_app.ui.pages.base_page import BasePage
+from desktop_app.ui.widgets.motion import set_feedback_visual
+from desktop_app.ui.widgets.trophy_badge_visuals import build_trophy_badge_icon
 
 
 class TrophiesPage(BasePage):

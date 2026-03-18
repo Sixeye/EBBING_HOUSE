@@ -6,7 +6,7 @@ from datetime import datetime
 from dataclasses import dataclass, field
 from typing import Callable
 
-from app.models.question import Question
+from core.models.question import Question
 
 ProgressUpdateCallback = Callable[[int, bool, datetime, float], None]
 

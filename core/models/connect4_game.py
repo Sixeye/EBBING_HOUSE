@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from app.models.question import Question
+from core.models.question import Question
 
 # Board encoding keeps rendering + logic explicit:
 # 0 = empty, 1 = player, 2 = opponent.

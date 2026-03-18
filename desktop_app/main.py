@@ -13,10 +13,10 @@ import sys
 from PySide6.QtWidgets import QApplication
 
 from app.config.settings import APP_NAME, APP_ORGANIZATION, APP_VERSION
-from app.themes.branding import build_window_icon
-from app.themes.stylesheet import build_stylesheet
-from app.ui.widgets.startup_splash import StartupSplashWidget
+from desktop_app.themes.branding import build_window_icon
+from desktop_app.themes.stylesheet import build_stylesheet
 from desktop_app.bootstrap_desktop import DesktopAppBootstrap
+from desktop_app.ui.widgets.startup_splash import StartupSplashWidget
 
 
 def create_application() -> QApplication:
@@ -62,4 +62,3 @@ def main() -> int:
 
 
 __all__ = ["create_application", "main"]
-

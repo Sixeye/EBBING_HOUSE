@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from PySide6.QtWidgets import QFrame, QLabel, QVBoxLayout
 
-from app.ui.pages.base_page import BasePage
+from desktop_app.ui.pages.base_page import BasePage
 
 
 class PlaceholderPage(BasePage):

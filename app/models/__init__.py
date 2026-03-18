@@ -1,76 +1,50 @@
-"""Domain models used by the application."""
+"""Compatibility shim for legacy `app.models.*` imports.
 
-from app.models.deck import Deck
-from app.models.connect4_game import (
-    Connect4AnswerEvaluation,
-    Connect4Cell,
-    Connect4ChallengeState,
-    Connect4ChallengeSummary,
-    Connect4MoveRequest,
-)
-from app.models.maze_difficulty import (
-    DEFAULT_MAZE_DIFFICULTY,
-    MAZE_DIFFICULTY_PRESETS,
-    MazeDifficultyCode,
-    MazeDifficultyPreset,
-)
-from app.models.profile import Profile
-from app.models.run_history import RunHistoryEntry, RunMode
-from app.models.question_progress import QuestionProgress
-from app.models.quiz_session import (
-    QuestionAttempt,
-    QuestionEvaluation,
-    QuizSessionState,
-    QuizSessionSummary,
-)
-from app.models.hangman_game import HangmanGameState, HangmanGameSummary
-from app.models.memory_garden import MemoryGardenSnapshot, MemoryGardenTree
-from app.models.maze_game import (
-    MazeChallengeState,
-    MazeChallengeSummary,
-    MazeDirection,
-    MazeGuardianTick,
-    MazeLayout,
-    MazeMoveEvaluation,
-    MazeMoveRequest,
-)
-from app.models.question import Question
-from app.models.settings import GlobalSettings
-from app.models.trophy import Trophy
-from app.models.profile_trophy import ProfileTrophy
+Phase 4A moved canonical domain models to `core.models`.
+This package keeps historical imports working during the transition.
+"""
 
-__all__ = [
-    "Deck",
-    "Connect4Cell",
-    "Connect4ChallengeState",
-    "Connect4MoveRequest",
-    "Connect4AnswerEvaluation",
-    "Connect4ChallengeSummary",
-    "Profile",
-    "RunMode",
-    "RunHistoryEntry",
-    "Question",
-    "QuestionProgress",
-    "GlobalSettings",
-    "Trophy",
-    "ProfileTrophy",
-    "QuestionAttempt",
-    "QuestionEvaluation",
-    "QuizSessionState",
-    "QuizSessionSummary",
-    "HangmanGameState",
-    "HangmanGameSummary",
-    "MazeDifficultyCode",
-    "MazeDifficultyPreset",
-    "DEFAULT_MAZE_DIFFICULTY",
-    "MAZE_DIFFICULTY_PRESETS",
-    "MazeDirection",
-    "MazeLayout",
-    "MazeMoveRequest",
-    "MazeGuardianTick",
-    "MazeChallengeState",
-    "MazeMoveEvaluation",
-    "MazeChallengeSummary",
-    "MemoryGardenSnapshot",
-    "MemoryGardenTree",
-]
+from __future__ import annotations
+
+import importlib
+import sys
+from pathlib import Path
+
+import core.models as _core_models
+from core.models import *  # noqa: F401,F403 - deliberate compatibility re-export.
+
+_THIS_DIR = Path(__file__).resolve().parent
+_CORE_MODELS_DIR = _THIS_DIR.parents[1] / "core" / "models"
+
+# Keep the local package directory first, then point module lookups
+# to `core/models` so imports like `app.models.question` continue to work.
+__path__ = [str(_THIS_DIR)]
+if _CORE_MODELS_DIR.exists():
+    __path__.append(str(_CORE_MODELS_DIR))
+
+# Ensure `app.models.<module>` resolves to the exact same module object as
+# `core.models.<module>`. This prevents duplicate class objects in memory
+# (important for isinstance checks and type identity across layers).
+_MODEL_MODULES = (
+    "connect4_game",
+    "csv_preview",
+    "dashboard",
+    "deck",
+    "hangman_game",
+    "maze_difficulty",
+    "maze_game",
+    "memory_garden",
+    "profile",
+    "profile_trophy",
+    "question",
+    "question_progress",
+    "quiz_session",
+    "run_history",
+    "settings",
+    "trophy",
+)
+for _module_name in _MODEL_MODULES:
+    _core_module = importlib.import_module(f"core.models.{_module_name}")
+    sys.modules.setdefault(f"{__name__}.{_module_name}", _core_module)
+
+__all__ = getattr(_core_models, "__all__", [])

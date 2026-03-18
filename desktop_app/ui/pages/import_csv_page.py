@@ -39,8 +39,8 @@ from app.services.profile_service import ProfileService
 from app.services.question_authoring_service import QuestionAuthoringService
 from app.services.question_import_service import QuestionImportService
 from app.services.trophy_service import TrophyService
-from app.ui.pages.base_page import BasePage
-from app.ui.widgets.motion import set_feedback_visual
+from desktop_app.ui.pages.base_page import BasePage
+from desktop_app.ui.widgets.motion import set_feedback_visual
 
 
 class ImportCsvPage(BasePage):

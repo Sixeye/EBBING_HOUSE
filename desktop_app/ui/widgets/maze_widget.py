@@ -6,7 +6,7 @@ from PySide6.QtCore import QEasingCurve, Property, QPropertyAnimation, QPointF, 
 from PySide6.QtGui import QColor, QPainter, QPen, QPolygonF
 from PySide6.QtWidgets import QWidget
 
-from app.themes.palette import ACCENT_ORANGE, ERROR_RED, SUCCESS_GREEN
+from desktop_app.themes.palette import ACCENT_ORANGE, ERROR_RED, SUCCESS_GREEN
 
 
 class MazeWidget(QWidget):

@@ -23,12 +23,12 @@ from app.services.deck_service import DeckService
 from app.services.profile_service import ProfileService
 from app.services.run_history_service import RunHistoryService
 from app.services.settings_service import SettingsService
-from app.ui.pages.base_page import BasePage
-from app.ui.widgets.connect4_widget import Connect4Widget
-from app.ui.widgets.game_start_fx import GameStartFxController
-from app.ui.widgets.motion import set_feedback_visual
-from app.ui.widgets.question_card import QuestionCardWidget
-from app.ui.widgets.session_summary_card import SessionSummaryCardWidget
+from desktop_app.ui.pages.base_page import BasePage
+from desktop_app.ui.widgets.connect4_widget import Connect4Widget
+from desktop_app.ui.widgets.game_start_fx import GameStartFxController
+from desktop_app.ui.widgets.motion import set_feedback_visual
+from desktop_app.ui.widgets.question_card import QuestionCardWidget
+from desktop_app.ui.widgets.session_summary_card import SessionSummaryCardWidget
 
 
 class Connect4Page(BasePage):

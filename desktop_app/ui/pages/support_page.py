@@ -6,9 +6,9 @@ from PySide6.QtCore import Qt, QUrl
 from PySide6.QtGui import QDesktopServices
 from PySide6.QtWidgets import QFrame, QHBoxLayout, QLabel, QPushButton, QVBoxLayout
 
-from app.themes.branding import load_brand_logo
-from app.ui.pages.base_page import BasePage
-from app.ui.widgets.motion import repolish, set_feedback_visual
+from desktop_app.themes.branding import load_brand_logo
+from desktop_app.ui.pages.base_page import BasePage
+from desktop_app.ui.widgets.motion import repolish, set_feedback_visual
 
 
 class SupportPage(BasePage):

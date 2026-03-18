@@ -6,7 +6,7 @@ from PySide6.QtCore import QEasingCurve, Property, QPropertyAnimation, QSize, Qt
 from PySide6.QtGui import QColor, QPainter, QPen
 from PySide6.QtWidgets import QSizePolicy, QWidget
 
-from app.themes.palette import ACCENT_ORANGE, BORDER_SUBTLE, ERROR_RED, SUCCESS_GREEN
+from desktop_app.themes.palette import ACCENT_ORANGE, BORDER_SUBTLE, ERROR_RED, SUCCESS_GREEN
 
 
 class HangmanWidget(QWidget):

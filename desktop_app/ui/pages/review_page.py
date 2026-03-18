@@ -22,10 +22,10 @@ from app.services.profile_service import ProfileService
 from app.services.quiz_session_service import QuizSessionService
 from app.services.spaced_repetition_service import SpacedRepetitionService
 from app.services.trophy_service import TrophyService
-from app.ui.pages.base_page import BasePage
-from app.ui.widgets.motion import set_feedback_visual
-from app.ui.widgets.question_card import QuestionCardWidget
-from app.ui.widgets.session_summary_card import SessionSummaryCardWidget
+from desktop_app.ui.pages.base_page import BasePage
+from desktop_app.ui.widgets.motion import set_feedback_visual
+from desktop_app.ui.widgets.question_card import QuestionCardWidget
+from desktop_app.ui.widgets.session_summary_card import SessionSummaryCardWidget
 
 
 class ReviewPage(BasePage):

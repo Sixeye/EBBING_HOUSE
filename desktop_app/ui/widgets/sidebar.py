@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (
 )
 
 from app.i18n.translator import Translator
-from app.themes.branding import load_brand_logo
+from desktop_app.themes.branding import load_brand_logo
 
 
 class SidebarWidget(QFrame):

@@ -38,7 +38,7 @@ from app.services.run_history_service import RunHistoryService
 from app.services.settings_service import SettingsService
 from app.services.spaced_repetition_service import SpacedRepetitionService
 from app.services.trophy_service import TrophyService
-from app.ui.main_window import MainWindow
+from desktop_app.ui.main_window import MainWindow
 
 
 class DesktopAppBootstrap:

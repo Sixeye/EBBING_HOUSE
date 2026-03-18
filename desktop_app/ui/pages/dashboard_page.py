@@ -17,10 +17,10 @@ from app.i18n.translator import Translator
 from app.models.dashboard import DashboardMetrics
 from app.services.dashboard_service import DashboardService
 from app.services.run_history_service import RunHistoryService
-from app.themes.branding import load_brand_banner
-from app.ui.pages.base_page import BasePage
-from app.ui.widgets.metric_card import MetricCard
-from app.ui.widgets.motion import flash_widget, repolish
+from desktop_app.themes.branding import load_brand_banner
+from desktop_app.ui.pages.base_page import BasePage
+from desktop_app.ui.widgets.metric_card import MetricCard
+from desktop_app.ui.widgets.motion import flash_widget, repolish
 
 
 class DashboardPage(BasePage):

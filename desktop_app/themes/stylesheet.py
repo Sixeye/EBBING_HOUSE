@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from app.themes.palette import (
+from desktop_app.themes.palette import (
     ACCENT_ORANGE,
     ACCENT_ORANGE_HOVER,
     ACCENT_ORANGE_PRESSED,

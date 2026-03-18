@@ -11,12 +11,12 @@ from app.services.profile_service import ProfileService
 from app.services.run_history_service import RunHistoryService
 from app.services.settings_service import SettingsService
 from app.services.trophy_service import TrophyService
-from app.ui.pages.base_page import BasePage
-from app.ui.widgets.game_start_fx import GameStartFxController
-from app.ui.widgets.hangman_widget import HangmanWidget
-from app.ui.widgets.motion import flash_widget, repolish, set_feedback_visual
-from app.ui.widgets.question_card import QuestionCardWidget
-from app.ui.widgets.session_summary_card import SessionSummaryCardWidget
+from desktop_app.ui.pages.base_page import BasePage
+from desktop_app.ui.widgets.game_start_fx import GameStartFxController
+from desktop_app.ui.widgets.hangman_widget import HangmanWidget
+from desktop_app.ui.widgets.motion import flash_widget, repolish, set_feedback_visual
+from desktop_app.ui.widgets.question_card import QuestionCardWidget
+from desktop_app.ui.widgets.session_summary_card import SessionSummaryCardWidget
 from PySide6.QtWidgets import (
     QBoxLayout,
     QComboBox,

@@ -12,8 +12,8 @@ from PySide6.QtWidgets import (
 )
 
 from app.services.settings_service import SettingsService
-from app.ui.pages.base_page import BasePage
-from app.ui.widgets.motion import set_feedback_visual
+from desktop_app.ui.pages.base_page import BasePage
+from desktop_app.ui.widgets.motion import set_feedback_visual
 
 
 class SettingsPage(BasePage):

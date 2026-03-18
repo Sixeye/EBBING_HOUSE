@@ -18,7 +18,7 @@ from PySide6.QtCore import QElapsedTimer, QPoint, QPointF, QRectF, Qt, QTimer, S
 from PySide6.QtGui import QColor, QLinearGradient, QPainter, QPen, QPixmap, QRadialGradient
 from PySide6.QtWidgets import QApplication, QWidget
 
-from app.themes.branding import (
+from desktop_app.themes.branding import (
     BRANDING_DIR,
     PRIMARY_BRANDING_DIR,
     PRIMARY_BRANDING_PATH,

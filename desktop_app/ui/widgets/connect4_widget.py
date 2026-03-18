@@ -6,7 +6,7 @@ from PySide6.QtCore import QSize, Qt
 from PySide6.QtGui import QColor, QPainter
 from PySide6.QtWidgets import QSizePolicy, QWidget
 
-from app.themes.palette import ACCENT_ORANGE, BACKGROUND_SECONDARY, BORDER_SUBTLE, ERROR_RED
+from desktop_app.themes.palette import ACCENT_ORANGE, BACKGROUND_SECONDARY, BORDER_SUBTLE, ERROR_RED
 
 
 class Connect4Widget(QWidget):

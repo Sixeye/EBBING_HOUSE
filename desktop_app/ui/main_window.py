@@ -31,25 +31,25 @@ from app.services.run_history_service import RunHistoryService
 from app.services.settings_service import SettingsService
 from app.services.spaced_repetition_service import SpacedRepetitionService
 from app.services.trophy_service import TrophyService
-from app.themes.branding import build_window_icon
-from app.ui.pages.base_page import BasePage
-from app.ui.pages.connect4_page import Connect4Page
-from app.ui.pages.dashboard_page import DashboardPage
-from app.ui.pages.hangman_page import HangmanPage
-from app.ui.pages.history_page import HistoryPage
-from app.ui.pages.import_csv_page import ImportCsvPage
-from app.ui.pages.memory_garden_page import MemoryGardenPage
-from app.ui.pages.maze_page import MazePage
-from app.ui.pages.profiles_page import ProfilesPage
-from app.ui.pages.review_page import ReviewPage
-from app.ui.pages.settings_page import SettingsPage
-from app.ui.pages.support_page import SupportPage
-from app.ui.pages.trophies_page import TrophiesPage
-from app.ui.widgets.animated_stack import AnimatedStackedWidget
-from app.ui.widgets.motion import apply_standard_micro_interactions
-from app.ui.widgets.background_music_controller import BackgroundMusicController
-from app.ui.widgets.sidebar import SidebarWidget
-from app.ui.widgets.toast import ToastManager
+from desktop_app.themes.branding import build_window_icon
+from desktop_app.ui.pages.base_page import BasePage
+from desktop_app.ui.pages.connect4_page import Connect4Page
+from desktop_app.ui.pages.dashboard_page import DashboardPage
+from desktop_app.ui.pages.hangman_page import HangmanPage
+from desktop_app.ui.pages.history_page import HistoryPage
+from desktop_app.ui.pages.import_csv_page import ImportCsvPage
+from desktop_app.ui.pages.memory_garden_page import MemoryGardenPage
+from desktop_app.ui.pages.maze_page import MazePage
+from desktop_app.ui.pages.profiles_page import ProfilesPage
+from desktop_app.ui.pages.review_page import ReviewPage
+from desktop_app.ui.pages.settings_page import SettingsPage
+from desktop_app.ui.pages.support_page import SupportPage
+from desktop_app.ui.pages.trophies_page import TrophiesPage
+from desktop_app.ui.widgets.animated_stack import AnimatedStackedWidget
+from desktop_app.ui.widgets.motion import apply_standard_micro_interactions
+from desktop_app.ui.widgets.background_music_controller import BackgroundMusicController
+from desktop_app.ui.widgets.sidebar import SidebarWidget
+from desktop_app.ui.widgets.toast import ToastManager
 
 
 class MainWindow(QMainWindow):
