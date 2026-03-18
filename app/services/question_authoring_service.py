@@ -4,15 +4,24 @@ from __future__ import annotations
 
 import html
 import re
-import shutil
 from dataclasses import replace
-from pathlib import Path
-from uuid import uuid4
+from typing import Protocol
 
-from app.core.paths import get_app_data_dir, get_media_dir
 from app.models.question import Question
 from app.repositories.deck_repository import DeckRepository
 from app.repositories.question_repository import QuestionRepository
+from desktop_app.runtime.question_media_storage import DesktopQuestionMediaStorage
+
+
+class QuestionMediaStorageAdapter(Protocol):
+    """Abstraction for media reference normalization/persistence.
+
+    This protocol lets authoring business rules stay independent from the
+    concrete filesystem implementation used by desktop runtime.
+    """
+
+    def normalize_media_reference(self, source: str | None) -> str | None:
+        """Normalize and persist a raw media input reference."""
 
 
 class QuestionAuthoringService:
@@ -33,9 +42,12 @@ class QuestionAuthoringService:
         self,
         deck_repository: DeckRepository,
         question_repository: QuestionRepository,
+        media_storage: QuestionMediaStorageAdapter | None = None,
     ) -> None:
         self.deck_repository = deck_repository
         self.question_repository = question_repository
+        # Keep current behavior by defaulting to the desktop filesystem adapter.
+        self.media_storage = media_storage or DesktopQuestionMediaStorage()
 
     def list_by_deck(self, deck_id: int) -> list[Question]:
         self._ensure_deck_exists(deck_id)
@@ -202,8 +214,8 @@ class QuestionAuthoringService:
         # Keep difficulty in the same [1..5] range used by CSV validation.
         difficulty = min(5, max(1, int(question.difficulty)))
         composed_tags = self._compose_tags(category=category, tags=question.tags)
-        question_image_path = self._normalize_media_reference(question.question_image_path)
-        explanation_image_path = self._normalize_media_reference(question.explanation_image_path)
+        question_image_path = self.media_storage.normalize_media_reference(question.question_image_path)
+        explanation_image_path = self.media_storage.normalize_media_reference(question.explanation_image_path)
 
         return replace(
             question,
@@ -277,36 +289,5 @@ class QuestionAuthoringService:
         stripped = re.sub(r"<[^>]+>", " ", value)
         stripped = html.unescape(stripped).replace("\xa0", " ")
         return bool(stripped.strip())
-
-    def _normalize_media_reference(self, source: str | None) -> str | None:
-        """Store media references in an app-managed location.
-
-        Strategy:
-        - if reference is already relative (managed), keep it
-        - if reference is absolute external path, copy into app media dir
-        - if file no longer exists, drop reference safely
-        """
-        if source is None:
-            return None
-        raw = source.strip()
-        if not raw:
-            return None
-
-        raw_path = Path(raw)
-        if not raw_path.is_absolute():
-            return raw.replace("\\", "/")
-
-        if not raw_path.exists() or not raw_path.is_file():
-            return None
-
-        media_dir = get_media_dir("questions")
-        suffix = raw_path.suffix or ".img"
-        target_name = f"{uuid4().hex}{suffix.lower()}"
-        target_path = media_dir / target_name
-        shutil.copy2(raw_path, target_path)
-
-        # Persist relative path so data remains portable across environments.
-        return str(target_path.relative_to(get_app_data_dir())).replace("\\", "/")
-
 
 __all__ = ["QuestionAuthoringService"]
