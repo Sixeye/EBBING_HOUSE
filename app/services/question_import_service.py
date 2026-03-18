@@ -1,58 +1,11 @@
-"""Service that imports validated CSV question payloads into SQLite."""
+"""Compatibility wrapper for ``QuestionImportService``.
 
-from __future__ import annotations
+Phase 4D.2 moved the canonical implementation to ``core.services``.
+This shim keeps historical imports (`app.services.question_import_service`) stable
+during the transition.
+"""
 
-from app.models.csv_preview import CsvNormalizedQuestion
-from app.models.question import Question
-from app.repositories.deck_repository import DeckRepository
-from app.repositories.question_repository import QuestionRepository
+from core.services.question_import_service import QuestionImportService
 
-
-class QuestionImportService:
-    """Bridge between CSV validation output and repository insertions."""
-
-    def __init__(
-        self,
-        deck_repository: DeckRepository,
-        question_repository: QuestionRepository,
-    ) -> None:
-        self.deck_repository = deck_repository
-        self.question_repository = question_repository
-
-    def import_validated_rows(
-        self,
-        deck_id: int,
-        rows: list[CsvNormalizedQuestion],
-    ) -> int:
-        """Import normalized questions into a specific deck.
-
-        `rows` must already be validated by CsvValidationService.
-        """
-        if not rows:
-            return 0
-
-        deck = self.deck_repository.get_by_id(deck_id)
-        if deck is None:
-            raise ValueError(f"Deck with id {deck_id} does not exist.")
-
-        questions = [
-            Question(
-                id=None,
-                deck_id=deck_id,
-                external_id=row.external_id,
-                question_text=row.question_text,
-                choice_a=row.choice_a,
-                choice_b=row.choice_b,
-                choice_c=row.choice_c,
-                choice_d=row.choice_d,
-                correct_answers=row.correct_answers,
-                mode=row.mode,
-                explanation=row.explanation,
-                difficulty=row.difficulty,
-                tags=row.tags,
-            )
-            for row in rows
-        ]
-
-        return self.question_repository.bulk_create(questions)
+__all__ = ["QuestionImportService"]
 
