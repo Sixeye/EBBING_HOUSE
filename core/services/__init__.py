@@ -14,6 +14,7 @@ from core.services.question_import_service import QuestionImportService
 from core.services.question_selection_service import QuestionSelectionService
 from core.services.run_history_service import RunHistoryService
 from core.services.settings_service import SettingsService
+from core.services.spaced_repetition_service import SpacedRepetitionService
 
 __all__ = [
     "CsvImportService",
@@ -25,4 +26,5 @@ __all__ = [
     "QuestionSelectionService",
     "RunHistoryService",
     "SettingsService",
+    "SpacedRepetitionService",
 ]
