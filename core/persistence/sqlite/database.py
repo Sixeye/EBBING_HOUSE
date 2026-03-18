@@ -7,7 +7,7 @@ from contextlib import contextmanager
 from pathlib import Path
 from typing import Iterator
 
-from app.db.schema import initialize_schema
+from core.persistence.sqlite.schema import initialize_schema
 
 
 class DatabaseManager:
